@@ -1,0 +1,30 @@
+extends layout 
+
+block content 
+
+    if baches 
+        input(type="text", name="user_coords", value=`${JSON.stringify(baches)}`, class="coords_index")
+
+    .relative.bg-gray-50
+      main(class='lg:relative')
+        .mx-auto.w-full.max-w-7xl.pt-16.pb-20.text-center(class='lg:py-48 lg:text-left')
+          .px-6(class='sm:px-8 lg:w-1/2 xl:pr-16')
+            h1.text-4xl.font-bold.tracking-tight.text-gray-900(class='sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl')
+                span.block.mb-2 Paraguay está
+                span.block.text-indigo-600  lleno de baches
+            p.mx-auto.mt-3.max-w-md.text-lg.text-gray-500(class='sm:text-xl md:mt-5 md:max-w-3xl')
+              | Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+            .mt-10(class='sm:flex sm:justify-center lg:justify-start')
+              .rounded-md.shadow
+                a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.bg-indigo-600.px-8.py-3.text-base.font-medium.text-white(href='/form', class='hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg') Adjuntar un bache
+              .mt-3.rounded-md.shadow(class='sm:mt-0 sm:ml-3')
+                a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.bg-white.px-8.py-3.text-base.font-medium.text-indigo-600(href='#', class='hover:bg-gray-50 md:py-4 md:px-10 md:text-lg') Ver estadísticas
+        .relative.h-64.w-full(class='sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2')
+            #map.absolute.inset-0.h-full.w-full.object-cover
+            
+            
+
+    script(src="../static/index.js") 
+    
+         
+        

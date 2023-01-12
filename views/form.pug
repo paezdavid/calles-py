@@ -1,0 +1,45 @@
+extends layout 
+
+block content 
+
+    h1(class="text-4xl") Completa el formulario
+    .wrapper 
+        form(action="/form", method="post", enctype="multipart/form-data") 
+            
+
+            div(class='pt-5')
+                label.block.text-xl.mb-4.font-medium.text-gray-700(for='category') Elegir una categoría (bache, basural, pérdida, etc.)
+                select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='category' class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
+                    option(selected='', value="bache") Bache
+                    option(selected='', value="basural") Basural
+                    option(selected='', value="perdida_de_agua") Pérdida de agua
+                    option(selected='', value="vereda_mal_estado") Vereda en mal estado
+                    
+            div(class='sm:items-start sm:gap-4 sm:pt-5')
+                label.block.text-xl.mb-4.font-medium.text-gray-700(for='image' class='sm:mt-px sm:pt-2') Añadir una imagen (hasta 2MB)
+                .mt-1(class='sm:col-span-2 sm:mt-0')
+                    input(name='image' type='file')
+
+            div(class='pt-5')
+                h2.block.text-xl.mb-4.font-medium.text-gray-700 Seleccionar ubicación
+                #map.form-map
+                button.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='button' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 askLocation') Encontrar mi ubicación
+
+            input(type="text", name="user_coords", class="user_coords")
+            
+            label.block.text-xl.mb-4.font-medium.text-gray-700.pt-5(for='opt_address') Agregar dirección (opcional)
+                .mt-1
+                    input#block.px-1.py-2.border-1.border-slate-300.border.solid.w-full.rounded-md.border-gray-300.shadow-sm(type='input' name='opt_address' class='focus:border-indigo-500 focus:ring-indigo-500 smxl' placeholder='Avda. España casi Brasil')
+
+            label.block.text-xl.mb-4.font-medium.text-gray-700.pt-5(for='opt_user_comment') Agregar algún comentario (opcional)
+                .mt-1
+                    textarea#comment.px-1.py-2.block.w-full.rounded-md.border-1.border-slate-300.border.solid.border-gray-300.shadow-sm(rows='4' name='opt_user_comment' class='focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm')
+            
+            div(class="pt-5") 
+                input.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='submit' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2', value="Enviar")
+
+
+        
+
+
+    script(src="../static/form.js") 

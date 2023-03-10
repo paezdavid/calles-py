@@ -9,9 +9,7 @@ Este proyecto aún es un trabajo en progreso.
 
 Creado con Nodejs, Tailwind CSS, MongoDB, Supabase, Leafletjs.
 
-![form](https://user-images.githubusercontent.com/69438782/212161303-14f368dd-b6e9-4d76-a736-9d0141fd9a13.png)
-![front](https://user-images.githubusercontent.com/69438782/212161300-6499d8f1-1fa0-4a6d-b7ac-ff02aa87e7cc.png)
-
+![front](https://user-images.githubusercontent.com/69438782/224445903-07257907-04c5-425a-b15a-47a763038b4a.png)
 
 ### TO DO:
 * Añadir botón de cámara para mobile

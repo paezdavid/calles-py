@@ -14,8 +14,7 @@ Creado con Nodejs, Tailwind CSS, MongoDB, Supabase, Leafletjs.
 
 
 ### TO DO:
-* Sanitizar inputs
-* Mejorar estilos
+* Añadir botón de cámara para mobile
 * Integrar con un bot de Twitter
 * Realizar reportes gráficos de datos en el tiempo
 * Deploy

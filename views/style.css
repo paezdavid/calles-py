@@ -4,15 +4,19 @@
     margin: 0;
 }
 
-body { padding: 1rem; }
+body { padding: 0; }
 
 .wrapper {
     max-width: 600px;
     margin: 0 auto;
+    padding: 1.5rem;
 }
+
+nav, main { margin: 0 auto; max-width: 1600px; }
 
 h1 { 
     text-align: center;
+    padding-top: 2rem;
 }
 
 form {
@@ -34,7 +38,12 @@ form {
     display: none;
 }
 
-.popup_img > img {
-    margin: 0 auto;
-    max-width: 100px;
+
+.location-alert {
+    display: none;
 }
+
+.location-alert-border {
+    border: none;
+}
+

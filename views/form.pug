@@ -2,30 +2,41 @@ extends layout
 
 block content 
 
+    nav.bg-indigo-900
+          .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+            .relative.flex.h-16.items-center.justify-between
+              .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
+                  .flex.space-x-4
+                    // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') CallesPy
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='#', class='hover:bg-white hover:text-indigo-800') Acerca
+
     h1(class="text-4xl") Completa el formulario
     .wrapper 
         form(action="/form", method="post", enctype="multipart/form-data") 
             
 
-            div(class='pt-5')
+            div.mb-4(class='pt-5')
                 label.block.text-xl.mb-4.font-medium.text-gray-700(for='category') Elegir una categoría (bache, basural, pérdida, etc.)
-                select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='category' class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
+                select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='category' required class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
                     option(selected='', value="bache") Bache
                     option(selected='', value="basural") Basural
                     option(selected='', value="perdida_de_agua") Pérdida de agua
                     option(selected='', value="vereda_mal_estado") Vereda en mal estado
                     
-            div(class='sm:items-start sm:gap-4 sm:pt-5')
-                label.block.text-xl.mb-4.font-medium.text-gray-700(for='image' class='sm:mt-px sm:pt-2') Añadir una imagen (hasta 2MB)
+            div.pb-2(class='sm:items-start sm:gap-4 sm:pt-5')
+                label.block.text-xl.mb-4.font-medium.text-gray-700(for='image' class='sm:mt-px sm:pt-2') Añadir una imagen (JPG/JPEG/PNG)
                 .mt-1(class='sm:col-span-2 sm:mt-0')
-                    input(name='image' type='file')
+                    input(name='image' required type='file' accept="image/jpeg, image/jpg, image/png")
+                p.text-red-500.pt-2(class="img-alert")
 
-            div(class='pt-5')
+            div(class='pt-5 pb-2 location-alert-border')
                 h2.block.text-xl.mb-4.font-medium.text-gray-700 Seleccionar ubicación
                 #map.form-map
                 button.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='button' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 askLocation') Encontrar mi ubicación
+                p.text-red-500.pt-2(class="location-alert") Por favor, elige una ubicación 
 
-            input(type="text", name="user_coords", class="user_coords")
+            input(type="text", name="user_coords", tabindex="-1", autocomplete="off", required class="user_coords")
             
             label.block.text-xl.mb-4.font-medium.text-gray-700.pt-5(for='opt_address') Agregar dirección (opcional)
                 .mt-1
@@ -36,7 +47,7 @@ block content
                     textarea#comment.px-1.py-2.block.w-full.rounded-md.border-1.border-slate-300.border.solid.border-gray-300.shadow-sm(rows='4' name='opt_user_comment' class='focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm')
             
             div(class="pt-5") 
-                input.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='submit' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2', value="Enviar")
+                input.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='submit' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 submitBtn', value="Enviar")
 
 
         

@@ -1,4 +1,4 @@
-console.log("debug")
+const user_coords = document.querySelector(".user_coords")
 
 let map = L.map('map').setView([-25.28646, -57.647], 11);
 
@@ -17,21 +17,34 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let popup = L.popup();
 
 
-function onMapClick(e) {
-    const user_coords = document.querySelector(".user_coords")
+// ALERTS (if form is not properly completed)
+const location_alert = document.querySelector(".location-alert")
+const location_alert_border = document.querySelector(".location-alert-border")
+const submitBtn = document.querySelector(".submitBtn")
+const imgInput = document.querySelector(".img-input")
+submitBtn.addEventListener("click", () => {
+    if (user_coords.getAttribute("value") === null) {
+        location_alert.style.display = "block"
+        location_alert_border.style.border = "1px solid red"
+    }
+})
 
-    // console.log(e.latlng)
+
+
+function onMapClick(e) {
     let marker;
+
     map.on('click', function(e) {
         if (marker)
             map.removeLayer(marker);
         
         marker = L.marker(e.latlng).addTo(map);
 
+        location_alert.style.display = "none"
+        location_alert_border.style.border = "none"
+    
         // put map coordinates from marker inside a hidden input
         user_coords.setAttribute("value", `${e.latlng.lat} ${e.latlng.lng}`)
-
-        console.log(e.latlng.lat, e.latlng.lng)
     });
 }
 

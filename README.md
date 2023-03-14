@@ -7,12 +7,14 @@ Pueden mostrar baches, pérdidas de agua, basurales o veredas en mal estado.
 
 Este proyecto aún es un trabajo en progreso.
 
-Creado con Nodejs, Tailwind CSS, MongoDB, Supabase, Leafletjs.
+Creado con Express, Tailwind CSS, MongoDB, Supabase, Leafletjs.
+
+### [Cómo funciona la app (docs)](https://github.com/paezdavid/calles-py/blob/5209f784bbc745fc948492d3dea7df2bfba81be5/DOCS.md)
 
 ![front](https://user-images.githubusercontent.com/69438782/224445903-07257907-04c5-425a-b15a-47a763038b4a.png)
 
 ### TO DO:
-* Añadir botón de cámara para mobile
+* Mejorar algunos aspectos de error handling.
 * Integrar con un bot de Twitter
-* Realizar reportes gráficos de datos en el tiempo
+* Realizar reportes gráficos de datos históricos
 * Deploy

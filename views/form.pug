@@ -13,7 +13,7 @@ block content
 
     h1(class="text-4xl") Completa el formulario
     .wrapper 
-        form(action="/form", method="post", enctype="multipart/form-data") 
+        form(action="/form", method="post") 
             
 
             div.mb-4(class='pt-5')
@@ -24,11 +24,6 @@ block content
                     option(selected='', value="perdida_de_agua") Pérdida de agua
                     option(selected='', value="vereda_mal_estado") Vereda en mal estado
                     
-            div.pb-2(class='sm:items-start sm:gap-4 sm:pt-5')
-                label.block.text-xl.mb-4.font-medium.text-gray-700(for='image' class='sm:mt-px sm:pt-2') Añadir una imagen (JPG/JPEG/PNG)
-                .mt-1(class='sm:col-span-2 sm:mt-0')
-                    input(name='image' required type='file' accept="image/jpeg, image/jpg, image/png")
-                p.text-red-500.pt-2(class="img-alert")
 
             div(class='pt-5 pb-2 location-alert-border')
                 h2.block.text-xl.mb-4.font-medium.text-gray-700 Seleccionar ubicación

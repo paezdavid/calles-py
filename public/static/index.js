@@ -27,8 +27,6 @@ coords_obj.arr_of_baches.forEach(bache_coord => {
     const upload_date = new Date(bache_coord.upload_date)
 
     marker.bindPopup(`
-        <img src="${bache_coord.image_url}" style="margin: 0 auto; max-width: 150px; margin-bottom: 0.5rem" />
-        \n
 
         <h3 style="font-size: 1.125rem; font-weight: bold;">${validate_category(bache_coord.street_category)}</h3>
         \n

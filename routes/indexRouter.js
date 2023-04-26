@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 const dotenv = require('dotenv').config();
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb://0.0.0.0:27017/`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const { MongoClient } = require('mongodb');
+const uri = `mongodb://127.0.0.1:27017/`;
+const client = new MongoClient(uri);
 
 router.get("/", async (req, res) => {
 

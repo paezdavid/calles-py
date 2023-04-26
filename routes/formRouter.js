@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const dotenv = require('dotenv').config();
 const { body } = require('express-validator');
 
@@ -22,8 +22,8 @@ router.post('/',
         const arrOfCoords = req.body.user_coords.split(" ")
     
         // INITIALIZE DB
-        const uri = `mongodb://0.0.0.0:27017/`;
-        const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+        const uri = `mongodb://127.0.0.1:27017/`;
+        const client = new MongoClient(uri);
         await client.connect()
         
         

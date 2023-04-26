@@ -18,8 +18,8 @@ Se debe tener instalado MongoDB localmente.
 - ```git clone https://github.com/paezdavid/calles-py.git```
 - ```cd calles-py```
 - ```git switch development```
-- ```mongoimport --collection=data --db=calles_py --file=baches.json```
 - Inicializar el servidor local de MongoDB
+- ```mongoimport --collection=data --db=calles_py --file=baches.json```
 - ```npm install```
 - Ejecutar ```node app.js```
 - Ir a ```http://localhost:8000```

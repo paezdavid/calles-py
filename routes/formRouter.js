@@ -34,8 +34,6 @@ router.post('/',
     body("opt_user_comment").trim().escape(),
     async (req, res) => {
 
-
-
     try {
         const uploadTime = Date.now()
     
@@ -67,41 +65,39 @@ router.post('/',
         // INITIALIZE DB
         const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.8jwuy6u.mongodb.net/?retryWrites=true&w=majority`;
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+        client.connect()
         
-        client.connect(async err => {
-            const bachesColl = await client.db(process.env.DB_NAME).collection(process.env.COLL_NAME);
+        const bachesColl = await client.db(process.env.DB_NAME).collection(process.env.COLL_NAME);
 
-            // If user input contains a "$", don't save the document and go back to the index.
-            // A "$" is used to perform NoSQL injection.
-            if (`${req.body.category} ${req.body.opt_address} ${req.body.opt_user_comment} ${arrOfCoords[0]} ${arrOfCoords[1]}`.includes("$")) {
-                console.error("User input contains a '$'. The document was not saved.")
-                res.redirect("/")
-                return
-            } else {
-                // INSERT EVERYTHING TO COLLECTION
-                const insertedDoc = await bachesColl.insertOne({
-                    street_category: req.body.category,
-                    image_url: imageData.data.publicUrl,
-                    street_coords: {
-                        lat: arrOfCoords[0],
-                        lng: arrOfCoords[1]
-                    },
-                    opt_address: req.body.opt_address,
-                    opt_user_comment: req.body.opt_user_comment,
-                    upload_date: uploadTime
-                })
-        
-                console.log("Document added to db! :)")
-        
-        
-                client.close();
-                console.log("Doneeeeeeeeeee form router!")
-            }
+        // If user input contains a "$", don't save the document and go back to the index.
+        // A "$" is used to perform NoSQL injection.
+        if (`${req.body.category} ${req.body.opt_address} ${req.body.opt_user_comment} ${arrOfCoords[0]} ${arrOfCoords[1]}`.includes("$")) {
+            console.error("User input contains a '$'. The document was not saved.")
             res.redirect("/")
-        });
+            return
+        } else {
+            // INSERT EVERYTHING TO COLLECTION
+            const insertedDoc = await bachesColl.insertOne({
+                street_category: req.body.category,
+                image_url: imageData.data.publicUrl,
+                street_coords: {
+                    lat: arrOfCoords[0],
+                    lng: arrOfCoords[1]
+                },
+                opt_address: req.body.opt_address,
+                opt_user_comment: req.body.opt_user_comment,
+                upload_date: uploadTime
+            })
     
+            console.log("Document added to db! :)")
     
-        
+            client.close();
+
+            console.log("Doneeeeeeeeeee form router!")
+        }
+
+        res.redirect("/")
+
     } catch (error) {
         console.error(error)
     }

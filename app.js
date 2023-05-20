@@ -27,6 +27,10 @@ app.get("/form", (req, res) => {
     res.render("form")
 })  
 
+app.get("/stats", (req, res) => {
+    res.render("stats")
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })

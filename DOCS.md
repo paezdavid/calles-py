@@ -1,15 +1,10 @@
 ## Breve documentación técnica del proyecto
 ### En la vista principal (index):
 #### Cuando se hace un GET al index:
-* Se hace una query a la base de datos.
-* Como la base de datos tira un "Cursor", hay que extraer los datos uno por uno y almacenarlos en un objeto de Javascript.
-* Este objeto tiene un array que contiene todos los datos de todos los documentos.
-* Se envía todo eso al cliente.
+* Se hace una llamada a [la API](https://github.com/paezdavid/calles-py-api) que contiene todos los datos sobre las denuncias.
 
 #### Cuando se carga todo el index:
-* Ese objeto con todos los datos se "esconde" en un input oculto.
-* Con vanilla JS se extraen los datos de ese input (se extrae el valor del atributo "value").
-* Se usan esos datos para popular el mapa (se usa un forEach).
+* Se popula el mapa con las ubicaciones de cada denuncia.
 
 ### En la vista del formulario:
 #### Cuando se hace un GET:

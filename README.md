@@ -9,7 +9,7 @@ Este proyecto aún es un trabajo en progreso.
 
 Creado con Express, Tailwind CSS, MongoDB, Supabase, Leafletjs.
 
-### [Cómo funciona la app (docs)](https://github.com/paezdavid/calles-py/blob/5209f784bbc745fc948492d3dea7df2bfba81be5/DOCS.md)
+### [Cómo funciona la app (docs)](https://github.com/paezdavid/calles-py/blob/main/DOCS.md)
 
 ### Probar en un servidor local con un mock database.
 

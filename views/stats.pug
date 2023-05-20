@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+
+    nav.bg-indigo-900
+          .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+            .relative.flex.h-16.items-center.justify-between
+              .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
+                  .flex.space-x-4
+                    // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') CallesPy
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='#', class='hover:bg-white hover:text-indigo-800') Acerca
+
+    h1(class="text-4xl") Estadísticas
+
+    .wrapper 
+        div.canvasWrapper
+            canvas#stats.mx-auto
+            
+    script(src="../static/stats.js") 

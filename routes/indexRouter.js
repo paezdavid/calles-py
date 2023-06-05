@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     const { MongoClient, ServerApiVersion } = require('mongodb');
     const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.8jwuy6u.mongodb.net/?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-    client.connect() 
+    await client.connect() 
 
     const bachesColl = await client.db(process.env.DB_NAME).collection(process.env.COLL_NAME);
 

@@ -5,6 +5,7 @@ const sharp = require("sharp")
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const dotenv = require('dotenv').config();
 const { body } = require('express-validator');
+const axios = require('axios');
 
 
 const { createClient } = require("@supabase/supabase-js");
@@ -36,28 +37,45 @@ router.post('/',
 
     try {
         const uploadTime = Date.now()
-    
-        const uploadResizedImg = await sharp(req.file.buffer).resize(1024, 768, { fit: 'cover' }).toFormat('jpg').toBuffer().then(async resized_img => {
-            
-            // UPLOAD IMAGE TO SUPABASE
-            const { data, error } = await supabase
-                .storage
-                .from('calles-paraguay')
-                .upload(`public/${uploadTime}.jpg`, resized_img, {
-                cacheControl: '3600',
-                upsert: false,
-                contentType: 'image/jpeg'
+        
+        if (req.file) {
+            const uploadResizedImg = await sharp(req.file.buffer).resize(1024, 768, { fit: 'cover' }).toFormat('jpg').toBuffer().then(async resized_img => {
+                
+                // UPLOAD IMAGE TO SUPABASE
+                const { data, error } = await supabase
+                    .storage
+                    .from('calles-paraguay')
+                    .upload(`public/${uploadTime}.jpg`, resized_img, {
+                    cacheControl: '3600',
+                    upsert: false,
+                    contentType: 'image/jpeg'
+                })
+                
+                console.log("Image uploaded to cloud storage! :)")
             })
             
-            console.log("Image uploaded to cloud storage! :)")
-        })
-    
+        }
+        
         // GET URL OF UPLOADED IMAGE
-        const imageData = await supabase
+        let imageData = await supabase
         .storage
         .from('calles-paraguay')
         .getPublicUrl(`public/${uploadTime}.jpg`)
         
+        
+        await axios.get(imageData.data.publicUrl)
+        .then(response => {
+            console.log('Response status:', response.status);
+        })
+        .catch(error => {
+            console.error(typeof error.response.data.statusCode);
+            if (error.response.data.statusCode === '404') {
+                imageData = null
+                console.log(imageData)
+            }
+        });
+
+
         // Lat and long come from the front as a string separated by a space. 
         // We extract those two values and put them into an array
         const arrOfCoords = req.body.user_coords.split(" ")
@@ -65,7 +83,7 @@ router.post('/',
         // INITIALIZE DB
         const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.8jwuy6u.mongodb.net/?retryWrites=true&w=majority`;
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-        client.connect()
+        await client.connect()
         
         const bachesColl = await client.db(process.env.DB_NAME).collection(process.env.COLL_NAME);
 
@@ -79,7 +97,7 @@ router.post('/',
             // INSERT EVERYTHING TO COLLECTION
             const insertedDoc = await bachesColl.insertOne({
                 street_category: req.body.category,
-                image_url: imageData.data.publicUrl,
+                image_url: imageData ? imageData.data.publicUrl : null ,
                 street_coords: {
                     lat: arrOfCoords[0],
                     lng: arrOfCoords[1]

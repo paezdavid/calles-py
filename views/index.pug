@@ -30,10 +30,31 @@ block content
               a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.bg-white.px-8.py-3.text-base.font-medium.text-indigo-600(href='/stats', class='hover:bg-gray-50 md:py-4 md:px-10 md:text-lg') Ver estadísticas
       .relative.h-64.w-full(class='sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2')
           #map.absolute.inset-0.h-full.w-full.object-cover
-            
+
+
+    section(class='lg:relative')
+
+      h1(class="text-4xl mb-6") Estadísticas
+
+      select(name='street_category' class="street_category p-1 mx-5")
+        option(value='all') Todo
+        option(value='bache') Bache
+        option(value='vereda_mal_estado') Vereda en mal estado
+        option(value='perdida_de_agua') Perdida de agua
+        option(value='basural') Basural
+
+      button(class="submit inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2") Filtrar
+
+
+      div.canvasWrapper
+        img(src="../static/images/spinner-loading.gif", class="img")
+        canvas#stats
+              
+          
+  script(src="../static/index.js", async) 
             
 
-    script(src="../static/index.js") 
+    
     
          
         

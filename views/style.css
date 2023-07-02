@@ -12,7 +12,23 @@ body { padding: 0; }
     padding: 1.5rem;
 }
 
-nav, main { margin: 0 auto; max-width: 1600px; }
+nav, main, section { margin: 0 auto; max-width: 1600px; }
+
+canvas {
+    height: 100%;
+    width: 100%;
+} 
+
+.img {
+    position: absolute;
+    top: 5rem;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.canvasWrapper { height: 400px; position: relative }
 
 h1 { 
     text-align: center;

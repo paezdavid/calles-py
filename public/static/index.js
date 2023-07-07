@@ -80,8 +80,12 @@ fetch('http://127.0.0.1:8000/denuncias/')
                     "" 
                 }
                 \n
+
+                <div style="margin-top:0.4rem;">
+                    <a href="/actualizar/${denuncia.id}">¿Fue arreglada esta calle?</a>
+                </div>
         
-                <p style="text-align:right;">${ upload_date.toLocaleString('py-ES') }</p>
+                <p style="text-align:right;">${ upload_date.toLocaleDateString("en-GB") }</p>
                 
             `, { minWidth: 200, maxWidth: 250 }).openPopup()
         } else {
@@ -106,14 +110,18 @@ fetch('http://127.0.0.1:8000/denuncias/')
                     "" 
                 }
                 \n
-        
-                <p style="text-align:right;">${ upload_date.toLocaleString('py-ES') }</p>
+
+                <div style="margin-top:0.4rem;">
+                    <a href="/actualizar/${denuncia.id}">¿Fue arreglada esta calle?</a>
+                </div>
+
+                <p style="text-align:right;">${ upload_date.toLocaleDateString('en-GB') }</p>
                 
             `, { minWidth: 200, maxWidth: 250 }).openPopup()
         }
 
         // Parse dates from database to show them on the chart
-        let parsedDate = new Date(denuncia.upload_date).toLocaleDateString()
+        let parsedDate = new Date(denuncia.upload_date).toLocaleDateString("en-GB")
     
         if (!(parsedDate in datesAndCounts)) {
             datesAndCounts[`${parsedDate}`.toString()] = 1

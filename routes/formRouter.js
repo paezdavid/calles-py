@@ -104,7 +104,11 @@ router.post('/',
                 },
                 opt_address: req.body.opt_address,
                 opt_user_comment: req.body.opt_user_comment,
-                upload_date: uploadTime
+                upload_date: new Date(uploadTime),
+                street_status: {
+                    broken: true,
+                    fixed_by: null
+                }
             })
     
             console.log("Document added to db! :)")

@@ -1,0 +1,36 @@
+extends layout 
+
+block content 
+
+    nav.bg-indigo-900
+          .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+            .relative.flex.h-16.items-center.justify-between
+              .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
+                  .flex.space-x-4
+                    // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') CallesPy
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='#', class='hover:bg-white hover:text-indigo-800') Acerca
+
+    h1(class="text-4xl") Si esta calle fue arreglada, completa el siguiente formulario:
+    .wrapper 
+        form(action=`/actualizar/${thisStreet._id}`, method="post") 
+            div.mb-4(class='pt-5')
+                label.block.text-xl.mb-4.font-medium.text-gray-700(for='arreglo') ¿Fue arreglada la calle?
+                select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='arreglo' required class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
+                    option(selected='', value="calle_fue_arreglada") Sí
+                    option(selected='', value="calle_no_fue_arreglada") No
+
+                label.block.text-xl.mb-4.font-medium.text-gray-700(for='quien') ¿Quién arregló la calle?
+                select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='quien' required class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
+                    option(selected='', value="comunidad") La comunidad
+                    option(selected='', value="entidad_gov") La entidad gubernamental responsable
+                    option(selected='', value="sin_conocimiento") No sé
+                    
+            //- div.pb-2(class='sm:items-start sm:gap-4 sm:pt-5')
+            //-     label.block.text-xl.mb-4.font-medium.text-gray-700(for='image' class='sm:mt-px sm:pt-2') ¿Quieres actualizar la imagen? (Opcional - JPG/JPEG/PNG)
+            //-     .mt-1(class='sm:col-span-2 sm:mt-0')
+            //-         input(name='image' type='file' accept="image/jpeg, image/jpg, image/png")
+            //-     p.text-red-500.pt-2(class="img-alert")
+            
+            div(class="pt-5") 
+                input.inline-flex.items-center.rounded-md.border.border-transparent.bg-indigo-600.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='submit' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 submitBtn', value="Enviar")

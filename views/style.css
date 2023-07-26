@@ -12,6 +12,8 @@ body { padding: 0; }
     padding: 1.5rem;
 }
 
+nav { background-color: #0f3867; }
+
 nav, main, section { margin: 0 auto; max-width: 1600px; }
 
 canvas {
@@ -33,7 +35,12 @@ canvas {
 h1 { 
     text-align: center;
     padding-top: 2rem;
+    color: #0f3867
 }
+
+.reportarBtn { background-color: #0f3867; }
+
+.submit { background-color: #0f3867; }
 
 form {
     width: 100%;

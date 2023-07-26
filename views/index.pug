@@ -3,7 +3,7 @@ extends layout
 block content 
 
   .relative.bg-gray-50
-    nav.bg-indigo-900
+    nav
       .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
         .relative.flex.h-16.items-center.justify-between
           .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
@@ -15,17 +15,14 @@ block content
     main(class='lg:relative')
       .mx-auto.w-full.max-w-7xl.pt-16.pb-20.text-center(class='lg:py-48 lg:text-left')
         .px-6(class='sm:px-8 lg:w-1/2 xl:pr-16')
-          h1.text-4xl.font-bold.tracking-tight.text-gray-900(class='sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl')
-              span.block.text-indigo-600.text-left  #{bachesCount} baches
-              span.block.text-indigo-600.text-left  #{veredasCount} veredas
-              span.block.text-indigo-600.text-left  #{aguaPerdidaCount} cañerías rotas
-              span.block.text-indigo-600.text-left  #{basuralesCount} basurales 
-              
-          p.mx-auto.mt-3.max-w-md.text-lg.text-gray-500.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+          h1.text-4xl.font-bold.tracking-tight(class='sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl')
+              span.block.text-left  #{bachesCount} baches reportados hasta la fecha
+
+          p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
             | ¡Reportá alguna calle en mal estado que hayas encontrado!
           .mt-10(class='sm:flex sm:justify-center lg:justify-start')
             .rounded-md.shadow
-              a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.bg-indigo-600.px-8.py-3.text-base.font-medium.text-white(href='/form', class='hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg') Reportar una calle 
+              a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.px-8.py-3.text-base.font-medium.text-white(href='/form', class='md:py-4 md:px-10 md:text-lg reportarBtn') Reportar una calle 
 
       .relative.h-64.w-full(class='sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2')
           #map.absolute.inset-0.h-full.w-full.object-cover
@@ -35,14 +32,14 @@ block content
 
       h1(class="text-4xl mb-6") Estadísticas
 
-      select(name='street_category' class="street_category p-1 mx-5")
-        option(value='all') Todo
-        option(value='bache') Bache
-        option(value='vereda_mal_estado') Vereda en mal estado
-        option(value='perdida_de_agua') Perdida de agua
-        option(value='basural') Basural
+      //- select(name='street_category' class="street_category p-1 mx-5")
+      //-   option(value='all') Todo
+      //-   option(value='bache') Bache
+      //-   option(value='vereda_mal_estado') Vereda en mal estado
+      //-   option(value='perdida_de_agua') Perdida de agua
+      //-   option(value='basural') Basural
 
-      button(class="submit inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2") Filtrar
+      //- button(class="submit inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2") Filtrar
 
 
       div.canvasWrapper

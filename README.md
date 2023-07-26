@@ -2,8 +2,7 @@
 ## Proyecto de geolocalización de calles en mal estado en el Paraguay.
 
 CallesPy es un proyecto que apunta a ser fuente de visibilización y denuncia del mal estado de las calles del país.
-El usuario puede adjuntar una imagen y una ubicación, así como algún comentario adicional de aquello que esté mostrando.
-Pueden mostrar baches, pérdidas de agua, basurales o veredas en mal estado.
+El usuario puede adjuntar una imagen y una ubicación de un bache en específico, así como algún comentario adicional del mismo.
 
 Este proyecto aún es un trabajo en progreso.
 
@@ -30,6 +29,4 @@ De momento, la rama development no contiene imágenes ni en el formulario ni en 
 
 ### TO DO:
 * Mejorar algunos aspectos de error handling.
-* Integrar con un bot de Twitter
-* Realizar reportes gráficos de datos históricos
-* Deploy
+* Deploy.

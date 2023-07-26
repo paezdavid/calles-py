@@ -25,7 +25,8 @@ Se debe tener instalado MongoDB localmente.
 
 De momento, la rama development no contiene imágenes ni en el formulario ni en la página principal.
 
-![front](https://user-images.githubusercontent.com/69438782/224445903-07257907-04c5-425a-b15a-47a763038b4a.png)
+![ui](https://github.com/paezdavid/calles-py/assets/69438782/8295d3eb-d6c7-40f5-8752-fdf991a27894)
+
 
 ### TO DO:
 * Mejorar algunos aspectos de error handling.

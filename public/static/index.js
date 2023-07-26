@@ -154,38 +154,6 @@ fetch('http://127.0.0.1:8000/denuncias/')
     
     });
 
-
-    submit_btn.addEventListener('click', async () => {
-        img.style.display = 'initial'
-        canvas.style.opacity = 0.2
-
-        await apiCall(street_category.value)
-        .then(async data => {
-            img.style.display = 'none'
-            canvas.style.opacity = 1
-            
-            if (street_category.value === "all") {
-                chart.data.labels = await Object.keys(datesAndCounts)
-                chart.data.datasets[0].data = await Object.values(datesAndCounts)
-                chart.update()
-            } else {
-                chart.data.labels = await getTimestamps(data).then(obj => Object.keys(obj))
-                chart.data.datasets[0].data = await getTimestamps(data).then(obj => Object.values(obj))
-                chart.update()
-                
-            }
-
-
-    
-        })
-
-
-        
-
-    })
-
-    
-    
 })
 .catch(error => console.error(error));
 

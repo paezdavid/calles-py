@@ -89,14 +89,14 @@ router.post('/',
 
         // If user input contains a "$", don't save the document and go back to the index.
         // A "$" is used to perform NoSQL injection.
-        if (`${req.body.category} ${req.body.opt_address} ${req.body.opt_user_comment} ${arrOfCoords[0]} ${arrOfCoords[1]}`.includes("$")) {
+        if (`${req.body.opt_address} ${req.body.opt_user_comment} ${arrOfCoords[0]} ${arrOfCoords[1]}`.includes("$")) {
             console.error("User input contains a '$'. The document was not saved.")
             res.redirect("/")
             return
         } else {
             // INSERT EVERYTHING TO COLLECTION
             const insertedDoc = await bachesColl.insertOne({
-                street_category: req.body.category,
+                street_category: "bache", // this is hardcoded for now. In the near future, more categories will be added.
                 image_url: imageData ? imageData.data.publicUrl : null ,
                 street_coords: {
                     lat: arrOfCoords[0],

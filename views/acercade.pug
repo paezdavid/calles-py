@@ -1,0 +1,60 @@
+extends layout 
+
+block content 
+
+    nav.feedbackForm.py-3(class="md:py-0")
+      .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-16.justify-between
+          .flex.flex-1.justify-center(class='sm:items-stretch')
+              .flex
+                p.text-white.rounded-md.py-1.font-medium(class="text-[0.75rem] md:text-[1rem] flex items-center") 
+                  span IMPORTANTE: Esta página está en fase de pruebas y nos encantaría saber tu opinión. Ayúdanos a mejorar la experiencia de usuario completando este #[a(href="/", class="underline") breve formulario.]
+
+    nav
+        .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-16.items-center.justify-between
+            .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
+                .flex.space-x-4
+                a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') Intransitable
+                a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/acerca', class='hover:bg-white hover:text-indigo-800') Acerca
+
+    .wrapper 
+        h1(class="text-4xl") ¿Qué es Intransitable?
+
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Intransitable es un proyecto de código abierto que apunta a ser fuente de visibilización y denuncia del mal estado de las calles del Paraguay. Al mismo tiempo, el proyecto aboga por la recopilación de datos y al libre acceso de estos mediante un registro histórico del estado de las calles en diversas comunidades del país. 
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Mediante una web interactiva, el usuario puede reportar un bache, eligiendo una ubicación y opcionalmente subiendo una imagen del mismo. Alternativamente, el usuario puede acceder a gráficos de visualización de datos, en donde se muestra la cantidad de baches añadidos en el tiempo o las ciudades más afectadas.
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Por otra parte, Intransitable se conforma también de una API: un mecanismo de acceso libre y gratuito a los datos recopilados sobre las calles reportadas. 
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Intransitable no busca ser una herramienta de navegación por GPS, pues ya existen herramientas que cumplen ese cometido. En vez de eso, busca la recopilación, visualización y análisis de datos a largo plazo.
+
+        h2(class="text-4xl mt-4") El problema
+
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Intransitable surge de la necesidad de tener un registro abierto de datos sobre el estado de las calles de Paraguay. No existen datos suficientes sobre el estado de las calles de país. Es sabido — por experiencia de primera mano como paraguayos — que las calles están en mal estado, pero no existe un registro estructurado de ellas ni de los cambios por los que fueron pasando en el tiempo. 
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left.mb-4(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | En el planteamiento de este problema, se realizaron preguntas como:
+
+        ul 
+            li(class="list-disc text-lg") ¿Cómo podríamos saber qué calles, barrios, o ciudades poseen las calles más descuidadas?
+            li(class="list-disc text-lg") ¿Cómo podríamos hacer un seguimiento del estado de una calle en específico?
+            li(class="list-disc text-lg") ¿Cómo podríamos determinar con qué frecuencia una calle sufre de cambios tanto positivos como negativos?
+            li(class="list-disc text-lg") ¿Cómo podríamos saber si las entidades gubernamentales responsables de las calles paraguayas están realmente haciendo su trabajo?
+            li(class="list-disc text-lg") ¿Cómo podríamos aprovechar la tecnología para ayudar a la visibilización de los baches del país?
+            li(class="list-disc text-lg") ¿Cómo podríamos recopilar datos sobre las calles del país de forma escalable?
+
+        h2(class="text-4xl mt-4") Una posible solución
+
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | La recolección de datos permite el análisis continuo de las calles del país. Mediante los datos recopilados en el tiempo se pueden ver tendencias y/o cambios y aplicar diferentes estrategias para mejorar lo que no pudo ser solucionado en primer lugar. Al ser abiertos estos registros, profesionales de diversas disciplinas podrían acceder a ellos para utilizarlos en sus investigaciones y ayudarlos a generar soluciones a largo plazo.
+        p.mx-auto.mt-3.max-w-md.text-lg.text-black.text-left(class='sm:text-xl md:mt-5 md:max-w-3xl')
+            | Así, Intransitable aboga por la transparencia, la colaboración, y el uso de la tecnología para señalar problemas y construir soluciones.
+
+    nav(class="mt-5")
+        .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-12.items-center.justify-between
+            .flex.flex-1.items-center.justify-end(class='sm:items-stretch')
+                .flex.space-x-4
+                a.text-white.rounded-md.px-6.py-2.text-base.font-medium(href='https://github.com/paezdavid/calles-py', class='hover:underline') ¿Querés contribuir al proyecto?

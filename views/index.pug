@@ -3,14 +3,21 @@ extends layout
 block content 
 
   .relative.bg-gray-50
+    nav.feedbackForm.py-3(class="md:py-0")
+      .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-16.justify-between
+          .flex.flex-1.justify-center(class='sm:items-stretch')
+              .flex
+                p.text-white.rounded-md.py-1.font-medium(class="text-[0.75rem] md:text-[1rem] flex items-center") 
+                  span IMPORTANTE: Esta página está en fase de pruebas y nos encantaría saber tu opinión. Ayúdanos a mejorar la experiencia de usuario completando este #[a(href="/", class="underline") breve formulario.]
+        
     nav
       .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
         .relative.flex.h-16.items-center.justify-between
           .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
               .flex.space-x-4
-                // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-                a.text-white.rounded-md.px-3.py-2.text-2xl.font-medium(href='/', aria-current='page') CallesPy
-                a.text-white.rounded-md.px-3.py-2.text-2xl.font-medium(href='#', class='hover:bg-white hover:text-indigo-800') Acerca
+                a.text-white.rounded-md.px-3.py-2.text-2xl.font-medium(href='/', aria-current='page') Intransitable
+                a.text-white.rounded-md.px-3.py-2.text-2xl.font-medium(href='/acerca', class='hover:bg-white hover:text-indigo-800') Acerca
                 
     main(class='lg:relative')
       .mx-auto.w-full.max-w-7xl.pt-16.pb-20.text-center(class='lg:py-48 lg:text-left')
@@ -23,6 +30,7 @@ block content
           .mt-10(class='sm:flex sm:justify-center lg:justify-start')
             .rounded-md.shadow
               a.flex.w-full.items-center.justify-center.rounded-md.border.border-transparent.px-8.py-3.text-base.font-medium.text-white(href='/form', class='md:py-4 md:px-10 md:text-lg reportarBtn') Reportar una calle 
+            
 
       .relative.h-64.w-full(class='sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2')
           #map.absolute.inset-0.h-full.w-full.object-cover
@@ -31,6 +39,8 @@ block content
     section(class='lg:relative')
 
       h1(class="text-4xl mb-6") Estadísticas
+
+      h2(class="text-2xl mb-6 text-center") Denuncias por día hasta la fecha 
 
       //- select(name='street_category' class="street_category p-1 mx-5")
       //-   option(value='all') Todo
@@ -45,9 +55,22 @@ block content
       div.canvasWrapper
         img(src="../static/images/spinner-loading.gif", class="img")
         canvas#stats
-              
+
+      h2(class="text-2xl mb-6 text-center") Cantidad de denuncias por ciudad 
+
+      div.canvasWrapper
+        img(src="../static/images/spinner-loading.gif", class="denunciasPerCityImg")
+        canvas#denunciasPerCity
+
+    nav(class="mt-5")
+        .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-12.items-center.justify-between
+            .flex.flex-1.items-center.justify-end(class='sm:items-stretch')
+                .flex.space-x-4
+                a.text-white.rounded-md.px-6.py-2.text-base.font-medium(href='https://github.com/paezdavid/calles-py', class='hover:underline') ¿Querés contribuir al proyecto?      
           
   script(src="../static/index.js", async) 
+
             
 
     

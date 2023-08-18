@@ -4,8 +4,6 @@ const dotenv = require('dotenv').config();
 
 
 router.get("/:id", async (req, res) => {
-    console.log(req.params.id) // the id of the record we clicked on
-
     const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
     const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.8jwuy6u.mongodb.net/?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });

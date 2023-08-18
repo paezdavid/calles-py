@@ -1,10 +1,15 @@
 const totalDenunciasChart = document.getElementById('stats');
+const denunciasPerCityChart = document.getElementById('denunciasPerCity');
 let map = L.map('map').setView([-25.321124, -57.551063], 12);
 const street_category = document.querySelector(".street_category")
 const submit_btn = document.querySelector(".submit")
 const canvasWrapper = document.querySelector(".canvasWrapper")
 const canvas = document.querySelector("#stats")
 const img = document.querySelector(".img")
+const denunciasPerCityImg = document.querySelector(".denunciasPerCityImg")
+const modalBox = document.querySelector(".modalBox")
+const closeModalBox = document.querySelector(".closeModal")
+
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -19,35 +24,19 @@ async function apiCall(street_category) {
     return data.denuncias
 }
 
-
-async function getTimestamps(denunciasArray) {
-    let datesAndCounts = await {  }
-
-    for await (const denuncia of denunciasArray) {
-        let parsedDate = new Date(denuncia.upload_date).toLocaleDateString()
-
-        if (!(parsedDate in datesAndCounts)) {
-            datesAndCounts[`${parsedDate}`.toString()] = 1
-        } else {
-            datesAndCounts[`${parsedDate}`.toString()] += 1
-        }
-    }
-    
-    return datesAndCounts
-}
-
 // When the website first loads, we call the API that returns all the data we need to populate the main map and the first chart
 fetch('http://127.0.0.1:8000/denuncias/')
   .then(response => response.json())
   .then(async data => {
-    img.style.display = "none"
-    let datesAndCounts = await {  } // Parsed dates will go here
+    let datesCount = await {  } // Parsed dates will go here
+    let citiesCount = await {  } // Amount of denuncias per city will go here
 
-    data.denuncias.forEach(async denuncia => {
+    for await (const denuncia of data.denuncias) {
         // Populate map with markers:
         const marker = L.marker([denuncia.street_coords.lat, denuncia.street_coords.lng]).addTo(map);
-        
+
         // Check and put the proper category on each popup
+        // Currently only one category available (bache)
         function validate_category(category) {
             if (category === "bache") {
                 return "Bache"
@@ -123,22 +112,33 @@ fetch('http://127.0.0.1:8000/denuncias/')
         // Parse dates from database to show them on the chart
         let parsedDate = new Date(denuncia.upload_date).toLocaleDateString("en-GB")
     
-        if (!(parsedDate in datesAndCounts)) {
-            datesAndCounts[`${parsedDate}`.toString()] = 1
+        // Populate object literal datesCount with the amount of denuncias per date
+        if (!(parsedDate in datesCount)) {
+            datesCount[`${parsedDate}`.toString()] = 1
         } else {
-            datesAndCounts[`${parsedDate}`.toString()] += 1
+            datesCount[`${parsedDate}`.toString()] += 1
+        }
+
+        // Populate object literal citiesCount with the amount of denuncias per city
+        if (!(denuncia.city in citiesCount)) {
+            citiesCount[`${denuncia.city}`] = 1
+        } else {
+            citiesCount[`${denuncia.city}`] += 1
         }
     
-    });
+    };
     
-    // Populate chart with data
-    const chart = new Chart(totalDenunciasChart, {
-        type: 'line',
+    img.style.display = "none"
+    denunciasPerCityImg.style.display = "none"
+
+    // Populate "Denuncias por dia" chart with data
+    const chart1 = new Chart(totalDenunciasChart, {
+        type: 'bar',
         data: {
-            labels: await Object.keys(datesAndCounts),
+            labels: await Object.keys(datesCount),
             datasets: [{
-                label: '# de denuncias',
-                data: await Object.values(datesAndCounts),
+                label: 'Cantidad total de denuncias',
+                data: await Object.values(datesCount),
                 borderWidth: 1
             }]
         },
@@ -147,16 +147,58 @@ fetch('http://127.0.0.1:8000/denuncias/')
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    display: true 
+                },
+                x: {
+                    display: false // Hide X axis labels
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
                 }
             }
         }
     
     });
 
+    // Populate "Denuncias por dia" chart with data
+    const chart2 = new Chart(denunciasPerCityChart, {
+        type: 'bar',
+        data: {
+            labels: await Object.keys(citiesCount),
+            datasets: [{
+                label: 'Cantidad de denuncias por ciudad',
+                data: await Object.values(citiesCount),
+                borderWidth: 1,
+                backgroundColor: '#FFB1C1'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    display: true 
+                },
+                x: {
+                    display: true // City names on X axis below the chart
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    
+    });
+    
+
+
+
+
 })
 .catch(error => console.error(error));
-
-
-
-

@@ -33,6 +33,10 @@ app.get("/actualizar", (req, res) => {
     res.render("actualizar")
 })
 
+app.get("/acerca", (req, res) => {
+    res.render("acercade")
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })

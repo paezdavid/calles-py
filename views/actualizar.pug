@@ -2,17 +2,24 @@ extends layout
 
 block content 
 
+    nav.feedbackForm.py-3(class="md:py-0")
+      .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-16.justify-between
+          .flex.flex-1.justify-center(class='sm:items-stretch')
+              .flex
+                p.text-white.rounded-md.py-1.font-medium(class="text-[0.75rem] md:text-[1rem] flex items-center") 
+                  span IMPORTANTE: Esta página está en fase de pruebas y nos encantaría saber tu opinión. Ayúdanos a mejorar la experiencia de usuario completando este #[a(href="/", class="underline") breve formulario.]
+
     nav
           .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
             .relative.flex.h-16.items-center.justify-between
               .flex.flex-1.items-center.justify-center(class='sm:items-stretch')
                   .flex.space-x-4
-                    // Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') CallesPy
-                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='#', class='hover:bg-white hover:text-indigo-800') Acerca
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/', aria-current='page') Intransitable
+                    a.text-white.rounded-md.px-3.py-2.text-xl.font-medium(href='/acerca', class='hover:bg-white hover:text-indigo-800') Acerca
 
-    h1(class="text-4xl") Si esta calle fue arreglada, completa el siguiente formulario:
     .wrapper 
+        h1(class="text-4xl") Si esta calle fue arreglada, completa el siguiente formulario:
         form(action=`/actualizar/${thisStreet._id}`, method="post") 
             div.mb-4(class='pt-5')
                 label.block.text-xl.mb-4.font-medium.text-gray-700(for='arreglo') ¿Fue arreglada la calle?
@@ -20,7 +27,7 @@ block content
                     option(selected='', value="calle_fue_arreglada") Sí
                     option(selected='', value="calle_no_fue_arreglada") No
 
-                label.block.text-xl.mb-4.font-medium.text-gray-700(for='quien') ¿Quién arregló la calle?
+                label.block.text-xl.my-4.font-medium.text-gray-700(for='quien') ¿Quién arregló la calle?
                 select#location.border-1.border-slate-300.border.solid.mt-1.block.w-full.max-w-full.rounded-md.border-gray-300.py-2.pl-3.pr-10.text-base(name='quien' required class='focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm')
                     option(selected='', value="comunidad") La comunidad
                     option(selected='', value="entidad_gov") La entidad gubernamental responsable
@@ -34,3 +41,10 @@ block content
             
             div(class="pt-5") 
                 input.inline-flex.items-center.rounded-md.border.border-transparent.px-3.py-2.text-sm.font-medium.leading-4.text-white.shadow-sm(type='submit' class='hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 submitBtn', style="background-color:#0f3867" value="Enviar")
+
+    nav(class="mt-5")
+        .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+        .relative.flex.h-12.items-center.justify-between
+            .flex.flex-1.items-center.justify-end(class='sm:items-stretch')
+                .flex.space-x-4
+                a.text-white.rounded-md.px-6.py-2.text-base.font-medium(href='https://github.com/paezdavid/calles-py', class='hover:underline') ¿Querés contribuir al proyecto?

@@ -4,12 +4,19 @@
     margin: 0;
 }
 
-body { padding: 0; }
+html { height: 100%; }
+body { padding: 0; height: 100%; }
 
 .wrapper {
     max-width: 600px;
+    min-height: 700px;
     margin: 0 auto;
     padding: 1.5rem;
+}
+
+.feedbackForm {
+    background-color: crimson;
+    
 }
 
 nav { background-color: #0f3867; }
@@ -21,7 +28,7 @@ canvas {
     width: 100%;
 } 
 
-.img {
+.img, .denunciasPerCityImg {
     position: absolute;
     top: 5rem;
     left: 0; 
@@ -30,7 +37,7 @@ canvas {
     margin-right: auto; 
 }
 
-.canvasWrapper { height: 400px; position: relative }
+.canvasWrapper { height: 400px; position: relative; margin-bottom: 1rem; padding: 0 0.5rem; }
 
 h1 { 
     text-align: center;
@@ -51,7 +58,14 @@ form {
     height: 400px;
 }
 
-#map { margin-bottom: 0.35rem; }
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#map { margin-bottom: 0.35rem; z-index: 1; }
 
 .user_coords {
     display: none;

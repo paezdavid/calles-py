@@ -5,7 +5,7 @@ const sharp = require("sharp")
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const dotenv = require('dotenv').config();
 const { body } = require('express-validator');
-const axios = require('axios');
+const axios = require('axios').default;
 
 
 const { createClient } = require("@supabase/supabase-js");
@@ -28,8 +28,7 @@ const upload = multer({ storage: storage, fileFilter: (req, file, cb) => {
 
 
 router.post('/', 
-    upload.single('image'), 
-    body("category").trim().escape(), // we trim and escape all the user input coming from the client.
+    upload.single('image'), // we trim and escape all the user input coming from the client.
     body("publicUrl").trim().escape(), 
     body("opt_address").trim().escape(),
     body("opt_user_comment").trim().escape(),
@@ -51,7 +50,7 @@ router.post('/',
                     contentType: 'image/jpeg'
                 })
                 
-                console.log("Image uploaded to cloud storage! :)")
+                // console.log("Image uploaded to cloud storage! :)")
             })
             
         }
@@ -71,7 +70,6 @@ router.post('/',
             console.error(typeof error.response.data.statusCode);
             if (error.response.data.statusCode === '404') {
                 imageData = null
-                console.log(imageData)
             }
         });
 
@@ -94,6 +92,9 @@ router.post('/',
             res.redirect("/")
             return
         } else {
+
+            const coordsData = await axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${arrOfCoords[0]}&lon=${arrOfCoords[1]}&format=json`)
+
             // INSERT EVERYTHING TO COLLECTION
             const insertedDoc = await bachesColl.insertOne({
                 street_category: "bache", // this is hardcoded for now. In the near future, more categories will be added.
@@ -102,6 +103,7 @@ router.post('/',
                     lat: arrOfCoords[0],
                     lng: arrOfCoords[1]
                 },
+                city: coordsData.data.address.city ? coordsData.data.address.city : coordsData.data.address.town,
                 opt_address: req.body.opt_address,
                 opt_user_comment: req.body.opt_user_comment,
                 upload_date: new Date(uploadTime),
@@ -111,11 +113,9 @@ router.post('/',
                 }
             })
     
-            console.log("Document added to db! :)")
+            // Document was added to db after previous operations ^ :)
     
             client.close();
-
-            console.log("Doneeeeeeeeeee form router!")
         }
 
         res.redirect("/")

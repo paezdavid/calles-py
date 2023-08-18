@@ -19,8 +19,6 @@ router.get("/", async (req, res) => {
 
     client.close();
 
-    console.log("Done loaded index!")
-
     // SEND THE DATA TO THE CLIENT
     res.render("index", { veredasCount: veredasCount, aguaPerdidaCount: aguaPerdidaCount, basuralesCount: basuralesCount, bachesCount: bachesCount })
 })
